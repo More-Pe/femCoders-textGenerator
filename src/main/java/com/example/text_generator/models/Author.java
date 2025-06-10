@@ -1,11 +1,14 @@
 package com.example.text_generator.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
-@Table(name = "auhtors")
+@Table(name = "authors")
 public class Author {
 
     @Id
@@ -15,7 +18,8 @@ public class Author {
     private String name;
 
     @OneToMany(mappedBy = "author")
-    private List<Phrase> phrases;
+    @JsonManagedReference("author-phrases")
+    private List<Phrase> phrases = new ArrayList<>();
 
     public Author() {
     }

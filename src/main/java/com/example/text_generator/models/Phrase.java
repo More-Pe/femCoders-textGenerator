@@ -1,5 +1,6 @@
 package com.example.text_generator.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,10 +15,12 @@ public class Phrase {
 
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
+    @JsonBackReference("author-phrases")
     private Author author;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
+    @JsonBackReference("category-phrases")
     private Category category;
 
     public Phrase() {

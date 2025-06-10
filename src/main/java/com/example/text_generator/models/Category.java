@@ -1,7 +1,9 @@
 package com.example.text_generator.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,8 +15,9 @@ public class Category {
 
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<Phrase> phrases;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("category-phrases")
+    private List<Phrase> phrases = new ArrayList<>();
 
     public Category(){
     }
