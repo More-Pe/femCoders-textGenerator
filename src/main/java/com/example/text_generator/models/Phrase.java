@@ -14,11 +14,11 @@ public class Phrase {
 
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
-    private  Long authorId;
+    private Author author;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    private Long categoryId;
+    private Category category;
 
     public Phrase() {
     }
@@ -39,19 +39,19 @@ public class Phrase {
         this.phrase = phrase;
     }
 
-    public Long getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -14,7 +14,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    private List<Category> categories;
+    private List<Phrase> phrases;
 
     public Category(){
     }
@@ -35,11 +35,11 @@ public class Category {
         this.name = name;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+    public List<Phrase> getPhrases() {
+        return phrases;
     }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
+    public void setPhrases(List<Phrase> phrases) {
+        this.phrases = phrases;
     }
 }
