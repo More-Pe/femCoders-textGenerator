@@ -4,10 +4,7 @@ import com.example.text_generator.models.Author;
 import com.example.text_generator.services.AuthorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,23 @@ public class AuthorController {
     public ResponseEntity<Author> addAuthor(@RequestBody  Author newAuthor) {
         Author createdAuthor = authorService.addAuthor(newAuthor);
         return new ResponseEntity<>(createdAuthor, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/author/{id}")
+    public ResponseEntity<Author> getAuthorById(@PathVariable Long id) {
+        Author author = authorService.getAuthorById(id);
+        return new ResponseEntity<>(author, HttpStatus.OK);
+    }
+
+    @PutMapping("/author/{id}")
+    public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author updatedAuthor) {
+        Author author = authorService.updateAuthor(id, updatedAuthor);
+        return new ResponseEntity<>(author, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/author/{id}")
+    public ResponseEntity<Void> deleteAuthor(@PathVariable Long id) {
+        authorService.deleteAuthor(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

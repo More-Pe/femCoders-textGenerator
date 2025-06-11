@@ -21,4 +21,19 @@ public class AuthorService {
     public Author addAuthor(Author newAuthor) {
         return authorRepository.save(newAuthor);
     }
+
+    public Author getAuthorById(Long id) {
+        return authorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Author not found"));
+    }
+
+    public Author updateAuthor(Long id, Author updatedAuthor) {
+        Author author = getAuthorById(id);
+        author.setName(updatedAuthor.getName());
+        return authorRepository.save(author);
+    }
+
+    public void deleteAuthor(Long id) {
+        authorRepository.deleteById(id);
+    }
 }
