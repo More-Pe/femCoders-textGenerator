@@ -84,12 +84,17 @@
 - **404 Not Found** - Resource not found
 - **409 Conflict** - Conflict with current state (resource already exists)
 
-#### 📝 Important Notes
+### 📝 Important Notes
 
 - ⚠️ **Cascade Delete**: Deleting authors or categories will also delete their associated phrases
 - 🔄 **PATCH Endpoint**: The `PATCH /phrase/{id}` endpoint allows partial updates (only fields sent in the body are updated)
 - 🔒 **Cycle Prevention**: JSON serialization is optimized to avoid circular references
-- ✅ **Validation**: All endpoints include input data validation
+
+### 🚀 Future Improvements
+
+- 🔍 Filter phrases by author and category
+- ✅ Add input validation for all endpoints
+- 🛡️ Better error handling and custom error messages
 
 ### 📞 Contact
 
