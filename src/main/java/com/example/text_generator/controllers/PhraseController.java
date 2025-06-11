@@ -4,10 +4,7 @@ import com.example.text_generator.models.Phrase;
 import com.example.text_generator.services.PhraseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,31 @@ public class PhraseController {
     public ResponseEntity <Phrase> addPhrase(@RequestBody Phrase newPhrase) {
         Phrase createdPhrase = phraseService.addPhrase(newPhrase);
         return new ResponseEntity<Phrase>(createdPhrase, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/phrase/{id}")
+    public ResponseEntity<Phrase> getPhraseById(@PathVariable Long id) {
+        Phrase phrase = phraseService.getPhraseById(id);
+        if (phrase != null) {
+            return new ResponseEntity<>(phrase, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PatchMapping("/phrase/{id}")
+    public ResponseEntity<Phrase> updatePhrase(@PathVariable Long id, @RequestBody Phrase updatedPhrase) {
+        Phrase phrase = phraseService.updatePhrase(id, updatedPhrase);
+        if (phrase != null) {
+            return new ResponseEntity<>(phrase, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/phrase/{id}")
+    public ResponseEntity<Void> deletePhrase(@PathVariable Long id) {
+        phraseService.deletePhrase(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

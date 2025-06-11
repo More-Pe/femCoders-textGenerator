@@ -11,7 +11,7 @@ public class Phrase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String phrase;
+    private String text;
 
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
@@ -34,12 +34,12 @@ public class Phrase {
         this.id = id;
     }
 
-    public String getPhrase() {
-        return phrase;
+    public String getText() {
+        return text;
     }
 
-    public void setPhrase(String phrase) {
-        this.phrase = phrase;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public Author getAuthor() {
