@@ -12,7 +12,7 @@ import java.util.List;
 public class AuthorController {
     private final AuthorService authorService;
 
-    public AuthorController (AuthorService authorService) {
+    public AuthorController(AuthorService authorService) {
         this.authorService = authorService;
     }
 
@@ -23,7 +23,7 @@ public class AuthorController {
     }
 
     @PostMapping("/author")
-    public ResponseEntity<Author> addAuthor(@RequestBody  Author newAuthor) {
+    public ResponseEntity<Author> addAuthor(@RequestBody Author newAuthor) {
         Author createdAuthor = authorService.addAuthor(newAuthor);
         return new ResponseEntity<>(createdAuthor, HttpStatus.CREATED);
     }
@@ -45,4 +45,5 @@ public class AuthorController {
         authorService.deleteAuthor(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+}
 

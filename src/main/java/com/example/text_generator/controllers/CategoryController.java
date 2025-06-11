@@ -4,10 +4,7 @@ import com.example.text_generator.models.Category;
 import com.example.text_generator.services.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,23 @@ public class CategoryController {
     public ResponseEntity <Category> addCategory(@RequestBody Category newCategory) {
         Category createdCategory = categoryService.addCategory(newCategory);
         return new ResponseEntity<Category>(createdCategory, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/category/{id}")
+    public ResponseEntity<Category> getCategoryById(@PathVariable Long id) {
+        Category category = categoryService.getCategoryById(id);
+        return new ResponseEntity<Category>(category, HttpStatus.OK);
+    }
+
+    @PutMapping("/category/{id}")
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category updatedCategory) {
+        Category category = categoryService.updateCategory(id, updatedCategory);
+        return new ResponseEntity<Category>(category, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/category/{id}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
+        categoryService.deleteCategory(id);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 }

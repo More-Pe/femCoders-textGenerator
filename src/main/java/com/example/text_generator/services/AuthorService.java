@@ -23,8 +23,7 @@ public class AuthorService {
     }
 
     public Author getAuthorById(Long id) {
-        return authorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Author not found"));
+        return authorRepository.findById(id).orElseThrow(() -> new RuntimeException("Author not found"));
     }
 
     public Author updateAuthor(Long id, Author updatedAuthor) {
